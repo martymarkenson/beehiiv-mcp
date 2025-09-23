@@ -1,0 +1,54 @@
+{
+  "manifest_version": "0.2",
+  "name": "Beehiiv MCP",
+  "version": "1.0.0",
+  "description": "MCP server for Beehiiv newsletter platform. Provides tools to interact with Beehiiv API including subscriber management and newsletter operations.",
+  "author": {
+    "name": "Beehiiv MCP",
+    "email": "support@beehiiv.com",
+    "url": "https://github.com/beehiiv/beehiiv-mcp"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "src/server.ts",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/src/server.ts"
+      ],
+      "env": {
+        "BEEHIIV_API_KEY": "${user_config.beehiiv_api_key}",
+        "BEEHIIV_PUBLICATION_ID": "${user_config.publication_id}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "get-subscribers",
+      "description": "Retrieve subscribers from a Beehiiv publication with filtering and pagination options"
+    }
+  ],
+  "keywords": [
+    "mcp",
+    "beehiiv",
+    "newsletter",
+    "subscribers",
+    "email-marketing"
+  ],
+  "user_config": {
+    "beehiiv_api_key": {
+      "type": "string",
+      "title": "Beehiiv API Key",
+      "description": "Your Beehiiv API key from https://app.beehiiv.com/settings/integrations",
+      "required": true
+    },
+    "publication_id": {
+      "type": "string",
+      "title": "Publication ID",
+      "description": "Your Beehiiv publication ID",
+      "required": true
+    }
+  },
+  "license": "MIT"
+}

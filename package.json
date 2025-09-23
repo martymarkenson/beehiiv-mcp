@@ -1,0 +1,57 @@
+{
+  "name": "beehiiv-mcp",
+  "version": "1.0.0",
+  "mcpName": "io.github.com/beehiiv-mcp",
+  "description": "MCP server for Beehiiv newsletter platform. Provides tools to interact with Beehiiv API including subscriber management.",
+  "author": {
+    "name": "Beehiiv MCP",
+    "email": "support@beehiiv.com",
+    "url": "https://github.com/beehiiv/beehiiv-mcp"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "beehiiv",
+    "newsletter",
+    "subscribers",
+    "email-marketing",
+    "model-context-protocol"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beehiiv/beehiiv-mcp.git"
+  },
+  "homepage": "https://github.com/beehiiv/beehiiv-mcp",
+  "bugs": {
+    "url": "https://github.com/beehiiv/beehiiv-mcp/issues"
+  },
+  "main": "src/server.ts",
+  "bin": {
+    "beehiiv-mcp": "src/server.ts"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "src/",
+    "server.json",
+    "manifest.json",
+    "icon.png",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "build": "tsc",
+    "dev": "tsx --watch src/server.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.0.0"
+  }
+}
