@@ -60,7 +60,7 @@ server.registerTool(
       if (tier) url.searchParams.set("tier", tier);
       if (email) url.searchParams.set("email", email);
       if (expand && expand.length > 0) {
-        expand.forEach(item => url.searchParams.append("expand[]", item));
+        expand.forEach((item: string) => url.searchParams.append("expand[]", item));
       }
       if (order_by) url.searchParams.set("order_by", order_by);
       if (direction) url.searchParams.set("direction", direction);
@@ -108,8 +108,10 @@ server.registerTool(
 // Start the MCP server
 async function startServer() {
   try {
+    process.stderr.write("Starting MCP server...\n");
     const transport = new StdioServerTransport();
     await server.connect(transport);
+    process.stderr.write("MCP server connected to transport\n");
 
     // Validate environment variables on startup
     if (!process.env.BEEHIIV_API_KEY) {
@@ -119,8 +121,10 @@ async function startServer() {
       process.stderr.write("Warning: BEEHIIV_PUBLICATION_ID environment variable is not set\n");
     }
 
-    // The server will keep running to handle MCP requests
-    // No need to explicitly keep the process alive as the transport handles this
+    process.stderr.write("MCP server is ready and waiting for requests\n");
+
+    // Keep the process alive explicitly
+    process.stdin.resume();
 
   } catch (error) {
     process.stderr.write(`Failed to start MCP server: ${error instanceof Error ? error.message : String(error)}\n`);
@@ -128,10 +132,8 @@ async function startServer() {
   }
 }
 
-// Only start the server if this file is run directly
-if (require.main === module) {
-  startServer().catch(error => {
-    process.stderr.write(`Unexpected error starting server: ${error instanceof Error ? error.message : String(error)}\n`);
-    process.exit(1);
-  });
-}
+// Start the server
+startServer().catch(error => {
+  process.stderr.write(`Unexpected error starting server: ${error instanceof Error ? error.message : String(error)}\n`);
+  process.exit(1);
+});
