@@ -22,7 +22,7 @@ A Model Context Protocol (MCP) server for integrating with the Beehiiv newslette
 
 ### Installation
 
-#### Install in Claude Desktop (Claude Code)
+#### Install in Claude Desktop
 
 1. Prepare your Beehiiv credentials
    - You will need your Beehiiv API key and your Publication ID.
