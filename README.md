@@ -22,36 +22,35 @@ A Model Context Protocol (MCP) server for integrating with the Beehiiv newslette
 
 ### Installation
 
-1. **Clone this repository**
-   ```bash
-   git clone https://github.com/beehiiv/beehiiv-mcp.git
-   cd beehiiv-mcp
-   ```
+#### Install in Claude Desktop (Claude Code)
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+1. Prepare your Beehiiv credentials
+   - You will need your Beehiiv API key and your Publication ID.
+   - In Beehiiv, go to Settings → Integrations to create or view your API key.
+   
+   ![Beehiiv API Key](screenshots/beehiiv-api.png)
 
-3. **Configure environment variables**
-   ```bash
-   cp .env .env.local
-   ```
+2. Upload the MCP bundle to Claude Desktop
+   - Open the Claude Desktop app.
+   - Navigate to Settings → Extensions.
+   - Drag-and-drop the bundle file [beehiiv-mcp.mcpb](beehiiv-mcp.mcpb), or go to Advanced settings → Install extension and select the same file from the project root.
 
-   Edit `.env.local` with your Beehiiv credentials:
-   ```bash
-   BEEHIIV_API_KEY=your_beehiiv_api_key_here
-   BEEHIIV_PUBLICATION_ID=your_publication_id_here
-   ```
+   ![Upload MCP Bundle in Claude](screenshots/claude-install.png)
 
-4. **Get your Beehiiv credentials**
-   - **API Key**: Go to [Beehiiv Integrations](https://app.beehiiv.com/settings/integrations) to generate your API key
-   - **Publication ID**: Find this in your Beehiiv dashboard URL or API responses
+3. Configure environment variables for the extension
+   - In the extension configuration screen, add the required variables:
+     - `BEEHIIV_API_KEY`: your Beehiiv API key
+     - `BEEHIIV_PUBLICATION_ID`: your Beehiiv publication ID
+   - Save the configuration.
 
-5. **Start the MCP server**
-   ```bash
-   npm run dev
-   ```
+   ![Configure MCP Environment](screenshots/configure-mcp.png)
+
+4. Use it in Claude Code
+   - Open a Claude chat (Claude Code) and ask something like: "Use the Beehiiv MCP to fetch subscribers".
+   - You can also verify tools are available via the Extensions view.
+
+Note: The MCP bundle file is included at the repository root as `beehiiv-mcp.mcpb`. If you build from source, you can continue to use the JSON-based configuration below as an alternative to the bundle.
+
 
 ### Testing Your MCP Server
 
