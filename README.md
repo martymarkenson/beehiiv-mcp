@@ -45,8 +45,8 @@ A Model Context Protocol (MCP) server for integrating with the Beehiiv newslette
 
    ![Configure MCP Environment](screenshots/configure-mcp.png)
 
-4. Use it in Claude Code
-   - Open a Claude chat (Claude Code) and ask something like: "Use the Beehiiv MCP to fetch subscribers".
+4. Use it in Claude Desktop app
+   - Open a chat and ask something like: "Use the Beehiiv MCP to fetch subscribers".
    - You can also verify tools are available via the Extensions view.
 
 Note: The MCP bundle file is included at the repository root as `beehiiv-mcp.mcpb`. If you build from source, you can continue to use the JSON-based configuration below as an alternative to the bundle.
