@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -105,7 +105,8 @@ server.registerTool(
 );
 
 
-async function main() {
+// Start the MCP server
+async function startServer() {
   try {
     const transport = new StdioServerTransport();
     await server.connect(transport);
@@ -118,13 +119,19 @@ async function main() {
       process.stderr.write("Warning: BEEHIIV_PUBLICATION_ID environment variable is not set\n");
     }
 
+    // The server will keep running to handle MCP requests
+    // No need to explicitly keep the process alive as the transport handles this
+
   } catch (error) {
     process.stderr.write(`Failed to start MCP server: ${error instanceof Error ? error.message : String(error)}\n`);
     process.exit(1);
   }
 }
 
-main().catch(error => {
-  process.stderr.write(`Unexpected error in main: ${error instanceof Error ? error.message : String(error)}\n`);
-  process.exit(1);
-});
+// Only start the server if this file is run directly
+if (require.main === module) {
+  startServer().catch(error => {
+    process.stderr.write(`Unexpected error starting server: ${error instanceof Error ? error.message : String(error)}\n`);
+    process.exit(1);
+  });
+}

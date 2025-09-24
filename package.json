@@ -25,15 +25,17 @@
   "bugs": {
     "url": "https://github.com/beehiiv/beehiiv-mcp/issues"
   },
-  "main": "src/server.ts",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
   "bin": {
-    "beehiiv-mcp": "src/server.ts"
+    "beehiiv-mcp": "dist/server.js"
   },
+  "type": "commonjs",
   "engines": {
     "node": ">=18.0.0"
   },
   "files": [
-    "src/",
+    "dist/",
     "server.json",
     "manifest.json",
     "icon.png",
@@ -41,9 +43,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "start": "tsx src/server.ts",
+    "start": "node dist/server.js",
     "build": "tsc",
-    "dev": "tsx --watch src/server.ts"
+    "dev": "tsx --watch src/server.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.1",
